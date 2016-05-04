@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css" media="all" type="text/css">
+	<link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css" media="all" type="text/css">
+	<link rel="stylesheet" href="style.css" media="all" type="text/css">
+</head>
+
+<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">
+
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<img id="logo-dataart" src="img/dataart.png" alt="">
+			<p>IT School 2016</p>
+
+			<span flex></span>
+
+			<md-button ng-click="">
+				<md-icon class="mdi mdi-view-list"></md-icon>
+				<a href="index.html">Test categories</a>
+				
+			</md-button>
+
+			<span flex></span>
+
+			<md-button ng-click="openSidebar()">
+				<md-icon class="mdi mdi-account-box"></md-icon>
+				Add contact data
+			</md-button>
+
+
+			<md-button ng-click="loginAdmin($event)">
+				<md-icon class="mdi mdi-exit-to-app"></md-icon>
+				Admin	
+			</md-button>
+
+		</div>
+	</md-toolbar>
+
+
+
+	<md-sidenav ng-cloak class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
+		<md-toolbar>
+			<h1 class="md-toolbar-tools">Add User info:</h1>
+		</md-toolbar>
+
+		<md-content layout-padding>
+
+			<form layout="column">
+				<md-input-container>
+					<label for="title">First name:</label>
+					<input id="title" type="text" md-autofocus ng-model="classified.first">
+				</md-input-container>
+
+				<md-input-container>
+					<label for="price">Second name:</label>
+					<input id="price" type="text" ng-model="classified.second">
+				</md-input-container>
+
+				<md-input-container>
+					<label for="description">E-mail:</label>
+					<input id="description" type="text" ng-model="classified.email">
+				</md-input-container>
+
+				<div layout="row">
+					
+				<md-button class="md-primary" ng-click="saveClassified(classified)">Save</md-button>
+				<md-button class="md-warn" ng-click="closeSidebar()">Cancel</md-button>
+				</div>
+
+			</form>
+
+			<pre>{{classified | json}}</pre>
+		</md-content>
+
+	</md-sidenav>
+
+
+
+
+
+
+	
+	<md-content ng-cloak class="md-padding" layout="row" layout-wrap>
+
+		<md-card flex="{{flexSize}}" style="{{flexOrder}}" ng-repeat="category in classifieds" >
+			<img ng-src="{{classified.image}}" alt="">
+
+			<md-card-content>
+				<div class="classified-info" >
+					<h3>{{category.description}}</h3>
+				</div>
+
+				<div class="classified-contact" ng-show="showContact">
+					<md-list>
+					  <md-list-item ng-repeat="question in category.questions">
+						  <span><md-icon class="mdi mdi-plus-circle"></md-icon>{{question.description}}</span>
+					  </md-list-item>
+					</md-list>	
+				</div>
+
+				<div layout="row">
+					<md-button ng-click="showContact = true; flexSize=95; flexOrder='-webkit-order:-1;order:-1;'" ng-show="!showContact">Start test</md-button>
+					<md-button ng-click="showContact = false; flexSize=30; flexOrder='-webkit-order:0; order:0;'" ng-show="showContact">Cancel test</md-button>
+					<md-button ng-click="showAdmin = true" ng-show="!showAdmin">Admin</md-button>
+					<md-button ng-click="showAdmin = false" ng-show="showAdmin">Close Admin</md-button>
+				</div>
+
+				<div class="classified-admin" ng-if="showAdmin">
+					<h3>Admin</h3>
+					<div layout="row">
+						<md-button class="md-primary">Edit</md-button>
+						<md-button class="md-warn">Delete</md-button>
+					</div>
+				</div>
+			</md-card-content>
+		</md-card>
+	</md-content>
+
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+	<script src="node_modules/angular-material/angular-material.min.js"></script>
+	<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="app.js"></script>
+	<script src="components/classifieds.ctr.js"></script>
+	<script src="components/classifieds.fac.js"></script>
+</body>
+</html>
