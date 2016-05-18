@@ -3,8 +3,23 @@
 
 	angular
 		.module("ngClassifieds")
-		.controller("classifiedsCtrl", function($scope, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog){
+		.controller("classifiedsCtrl", function($scope, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog, productResource){
 			
+
+
+			var vm = this;
+			productResource.query(
+				function(data){
+					vm.questions = data;
+					
+				}
+			);
+
+
+
+
+
+
 
 			var contact = {
 			  "name": "John Doe",
@@ -14,7 +29,7 @@
 
 
 			classifiedsFactory.getClassifieds().then(function(data){
-				console.log(data.data);
+				
 				$scope.classifieds = data.data;
 				
 			});	

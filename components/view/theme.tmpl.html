@@ -1,0 +1,69 @@
+<md-content ng-cloak class="md-padding" layout="row" layout-wrap>
+
+		<md-card ng-cloak flex="{{flexSize}}" style="{{flexOrder}}" ng-repeat="category in allQuestions.categories" >
+
+			<md-card-content ng-cloak>
+				<div class="classified-info" >
+					<h3 ng-cloak>{{category.description}}</h3>
+				</div>
+
+				<div class="classified-contact" ng-show="showContact">
+<!--					<md-list layout="column">
+					  <md-list-item layout="column" ng-repeat="question in category.questions">
+						  <span><md-icon class="mdi mdi-plus-circle"></md-icon ng-cloak>{{question.description}}</span>
+					       <div ng-repeat='answer in question.answers'>* {{answer.description}}</div>
+                      </md-list-item>
+                      
+                                          
+                    </md-list>
+                    -->
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="question in category.questions">
+                            
+                            <div class="outer-list-item md-list-item-text">
+                            <h3><strong>{{question.description}}</strong></h3>
+                            
+                                
+                                <md-list ng-if="question.answerType == 'multi'">
+                                    <md-list-item class="md-1-line" ng-repeat="answer in question.answers">
+                                        <md-checkbox ng-model="item.done"></md-checkbox>
+                                        <div class="md-list-item-text">
+                                            <p>{{answer.description}}</p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                               
+                                <div  class="my-radio-group">
+                                    
+                                    <md-radio-group ng-model="group1"  ng-if="question.answerType == 'single'">
+                                        <md-radio-button value="{{answer.description}}" ng-repeat="answer in question.answers"> {{answer.description}}  </md-radio-button>
+                                    </md-radio-group>     
+                                    
+                                </div>
+                               
+                                                                                         
+                            
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                    
+                    	
+				</div>
+
+				<div layout="row">
+					<md-button ng-click="showContact = true; flexSize=95; flexOrder='-webkit-order:-1;order:-1;'" ng-show="!showContact">Start test</md-button>
+					<md-button ng-click="showContact = false; flexSize=30; flexOrder='-webkit-order:0; order:0;'" ng-show="showContact">Cancel test</md-button>
+					<md-button ng-click="showAdmin = true" ng-show="!showAdmin">Admin</md-button>
+					<md-button ng-click="showAdmin = false" ng-show="showAdmin">Close Admin</md-button>
+				</div>
+
+				<div class="classified-admin" ng-if="showAdmin">
+					<h3>Admin</h3>
+					<div layout="row">
+						<md-button class="md-primary">Edit</md-button>
+						<md-button class="md-warn">Delete</md-button>
+					</div>
+				</div>
+			</md-card-content>
+		</md-card>
+	</md-content>

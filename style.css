@@ -4,3 +4,20 @@
 button .mdi-plus-circle, .mdi-view-list, .mdi-account-box, .mdi-exit-to-app{
 	margin-top:7px;
 }
+
+.outer-list-item{
+	margin-bottom: 2em !important;
+	
+}
+
+
+.my-radio-group{
+	margin-top: 1.5em;
+	margin-left: 1.1em;
+	
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: .010em;
+	line-height: 1.6em;
+	color: rgba(0,0,0,0.54);
+}

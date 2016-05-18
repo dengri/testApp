@@ -1,5 +1,5 @@
 angular
-	.module('ngClassifieds', ['ngMaterial', 'ui.router'])
+	.module('ngClassifieds', ['ngMaterial', 'ui.router', 'common.services'])
 
 	.config(function($mdThemingProvider, $stateProvider){
 		$mdThemingProvider
