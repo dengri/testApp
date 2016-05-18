@@ -1,8 +1,9 @@
-<md-content ng-cloak class="md-padding" layout="row" layout-wrap>
+<md-content ng-cloak class="md-padding" layout="row" layout-wrap ng-show="true">
 
-		<md-card ng-cloak flex="{{flexSize}}" style="{{flexOrder}}" ng-repeat="category in allQuestions.categories" >
+		<md-card ng-cloak flex-xs="90" flex-gt-xs="{{flexSize}}"  style="{{flexOrder}}" ng-repeat="category in allQuestions.categories" >
 
 			<md-card-content ng-cloak>
+				
 				<div class="classified-info" >
 					<h3 ng-cloak>{{category.description}}</h3>
 				</div>
